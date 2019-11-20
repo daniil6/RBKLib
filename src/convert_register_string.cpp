@@ -1,4 +1,4 @@
-#include <iostream>
+#include "include/convert_register_string.h"
 
 const uint8_t sizeAlphabetEng = 26;
 const uint8_t sizeAlphabetRus = 33;

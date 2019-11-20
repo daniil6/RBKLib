@@ -3,10 +3,12 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/convert_double_bit.cpp"/>
     <File Name="src/convert_string_double.cpp"/>
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/convert_double_bit.h"/>
     <File Name="include/convert_string_double.h"/>
     <File Name="include/convert_register_string.h"/>
   </VirtualDirectory>

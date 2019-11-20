@@ -1,28 +1,41 @@
-#include <string>
+#include "include/convert_string_double.h"
 
-void parse(char* ch, double& out, float& count, bool& divider, const char delimiter)
+bool parse(char* ch, double& out, float& count, bool& divider, const char& delimiter)
 {
     if(*ch != '\0') {
+
+        if(*ch < '0' || *ch > '9')
+            if(*ch != delimiter)
+                return false;
+            else if(divider == false)
+                return false;
+
         uint16_t tmp = *ch - '0';
         if(divider == false) {
             count /= 10;
             out += tmp * count;
         }
+
         if(*ch == delimiter)
             divider = false;
-        parse(++ch, out, count, divider, delimiter);
+
+        if(parse(++ch, out, count, divider, delimiter) == false)
+            return true;
+
         if(*ch == delimiter) {
             divider = true;
             count = 1;
         }
+
         if(divider == true) {
             out += tmp * count;
             count *= 10;
         }
     }
+    return true;
 }
 
-double ConvertCharToDouble(char* ch, const char delimiter)
+double ConvertCharToDouble(char* ch, const char& delimiter)
 {
     double out = 0;
     float count = 1;
@@ -36,7 +49,7 @@ double ConvertCharToDouble(char* ch, const char delimiter)
     return out;
 }
 
-double ConvertStringToDouble(std::string string, const char delimiter)
+double ConvertStringToDouble(std::string string, const char& delimiter)
 {
     return ConvertCharToDouble(&string.front(), delimiter);
 }
