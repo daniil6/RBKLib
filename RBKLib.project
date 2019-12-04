@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="RBKLib" Version="10.0.0" InternalType="Library">
+<CodeLite_Project Name="RBKLib" Version="11000" InternalType="Library">
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/compare_symbol.cpp"/>
+    <File Name="src/read_dir.cpp"/>
     <File Name="src/convert_double_bit.cpp"/>
     <File Name="src/convert_string_double.cpp"/>
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/compare_symbol.h"/>
+    <File Name="include/read_dir.h"/>
     <File Name="include/convert_double_bit.h"/>
     <File Name="include/convert_string_double.h"/>
     <File Name="include/convert_register_string.h"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
   <Settings Type="Static Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -101,6 +107,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

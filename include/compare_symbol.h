@@ -1,0 +1,1 @@
+bool CompareSymbol(const char a[], const char b[]);
