@@ -24,7 +24,7 @@ std::string ConvertDoubleToBit(double value)
             out.push_back('1');
         if(t == 0)
             out.push_back('0');
-        if(std::distance(bits.begin(), itr) == count * 4) {
+        if(std::distance(bits.begin(), itr) == count * 4 - 1) {
             out.push_back(' ');
             count++;
         }
