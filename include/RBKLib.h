@@ -3,3 +3,4 @@
 #include "convert_register_string.h"
 #include "convert_string_double.h"
 #include "read_dir.h"
+#include "read_file.h"

@@ -1,0 +1,1 @@
+std::string ReadFileS(std::string line);

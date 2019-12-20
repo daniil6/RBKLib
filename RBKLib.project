@@ -3,6 +3,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/read_file.cpp"/>
     <File Name="src/compare_symbol.cpp"/>
     <File Name="src/read_dir.cpp"/>
     <File Name="src/convert_double_bit.cpp"/>
@@ -10,6 +11,7 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/read_file.h"/>
     <File Name="include/compare_symbol.h"/>
     <File Name="include/read_dir.h"/>
     <File Name="include/convert_double_bit.h"/>
