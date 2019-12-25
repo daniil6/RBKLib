@@ -3,6 +3,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/wtime.cpp"/>
     <File Name="src/read_file.cpp"/>
     <File Name="src/compare_symbol.cpp"/>
     <File Name="src/read_dir.cpp"/>
@@ -11,6 +12,7 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/wtime.h"/>
     <File Name="include/read_file.h"/>
     <File Name="include/compare_symbol.h"/>
     <File Name="include/read_dir.h"/>
@@ -18,8 +20,6 @@
     <File Name="include/convert_string_double.h"/>
     <File Name="include/convert_register_string.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
   <Settings Type="Static Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -109,4 +109,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>
