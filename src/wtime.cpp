@@ -71,3 +71,8 @@ long CalculateTime(uint8_t second, uint8_t minute, uint8_t hour, uint8_t day, ui
     result = second + secMinute + secHour + secDay + secMonth + secYear;
     return result;
 }
+
+long CalculateTime(tDataTime dataTime)
+{
+    CalculateTime(dataTime.second, dataTime.minute, dataTime.hour, dataTime.day, dataTime.month, dataTime.year);
+}
