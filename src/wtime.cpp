@@ -4,11 +4,17 @@
 
 #define DAYSEC 24 * 60 * 60
 
-long CalculateTime(uint8_t second, uint8_t minute, uint8_t hour, uint8_t day, uint8_t month, uint16_t year)
+long CalculateTime(uint8_t second,
+    uint8_t minute,
+    uint8_t hour,
+    uint8_t day,
+    uint8_t month,
+    uint16_t year,
+    uint8_t timeZone)
 {
     long result = 0;
 
-    long secMinute, secHour, secDay, secMonth, secYear = 0;
+    long secMinute(0), secHour(0), secDay(0), secMonth(0), secYear(0);
 
     int countLeapYear = 0;
 
@@ -65,7 +71,7 @@ long CalculateTime(uint8_t second, uint8_t minute, uint8_t hour, uint8_t day, ui
     }
 
     secDay = (day - 1) * DAYSEC;
-    secHour = hour * 60 * 60;
+    secHour = (hour - timeZone) * 60 * 60;
     secMinute = minute * 60;
 
     result = second + secMinute + secHour + secDay + secMonth + secYear;
