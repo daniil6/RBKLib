@@ -33,5 +33,19 @@ std::string ReadFileL(std::string line)
 
     line.pop_back(); // delete last excess symbol // why?
     fclose(file);
+
     return line;
+}
+
+char* ReadFileZ(std::string line, int& size)
+{
+    std::string t_line = ReadFileL(line);
+
+    size = t_line.size();
+    char* result = new char[size];
+
+    for(int i = 0; i < size; i++)
+        result[i] = t_line.at(i);
+
+    return result;
 }

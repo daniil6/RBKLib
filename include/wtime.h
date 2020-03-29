@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-struct tDataTime {
+struct tDateTime {
     uint8_t second;
     uint8_t minute;
     uint8_t hour;
@@ -9,12 +9,6 @@ struct tDataTime {
     uint16_t year;
 };
 
-long CalculateTime(uint8_t second,
-    uint8_t minute,
-    uint8_t hour,
-    uint8_t day,
-    uint8_t month,
-    uint16_t year,
-    uint8_t timeZone = 3);
+tDateTime convertSecToDateTime(long sec);
 
-long CalculateTime(tDataTime dataTime);
+long convertDateTimeToSec(const tDateTime dataTime);
