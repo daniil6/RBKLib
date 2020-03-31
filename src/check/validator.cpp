@@ -1,6 +1,6 @@
-#include "include/validator.h"
+#include "include/check/validator.h"
 
-void ValidatorArray(char out[], char in[])
+void ValidatorArray(char in[], char out[])
 {
     if(out != nullptr && in != nullptr) {
         char ch;

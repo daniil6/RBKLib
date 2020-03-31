@@ -1,6 +1,6 @@
 #include <string>
 
-void ValidatorArray(char out[], char in[]);
+void ValidatorArray(char in[], char out[]);
 
 void ValidatorPoint(const char* in, char* out);
 
