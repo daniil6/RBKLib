@@ -4,6 +4,8 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="check">
+      <File Name="src/check/sign.cpp"/>
+      <File Name="src/check/brackets.cpp"/>
       <File Name="src/check/validator.cpp"/>
     </VirtualDirectory>
     <File Name="src/wtime.cpp"/>
@@ -16,6 +18,8 @@
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <VirtualDirectory Name="check">
+      <File Name="include/check/sign.h"/>
+      <File Name="include/check/brackets.h"/>
       <File Name="include/check/validator.h"/>
     </VirtualDirectory>
     <File Name="include/wvector.h"/>

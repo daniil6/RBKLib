@@ -1,0 +1,1 @@
+bool Brackets(const char* inStr);
