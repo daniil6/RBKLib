@@ -3,6 +3,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/validator.cpp"/>
     <File Name="src/wtime.cpp"/>
     <File Name="src/read_file.cpp"/>
     <File Name="src/compare_symbol.cpp"/>
@@ -12,6 +13,7 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/validator.h"/>
     <File Name="include/wvector.h"/>
     <File Name="include/wtime.h"/>
     <File Name="include/read_file.h"/>
