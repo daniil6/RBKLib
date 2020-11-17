@@ -1,4 +1,4 @@
-#include "include/check/sign.h"
+#include "check/sign.h"
 
 CheckError SignShowFullError(const CheckStatus& status, const char& symbol)
 {
@@ -14,7 +14,7 @@ CheckError SignShowFullError(const CheckStatus& status, const char& symbol)
             return SIGN_SIGN; // После знака идет знак //
     }
 
-    if(status == POINT) {
+    if(status == D_POINT) {
 
         if(symbol == '(')
             return POINT_BRACKET_OPEN; // После точки идет закрывающаяся скобка
@@ -50,15 +50,15 @@ CheckError SignShowFullError(const CheckStatus& status, const char& symbol)
     return SUCCESS;
 }
 
-CheckError SignFullError(const char* inStr)
+CheckError SignFullError(const char* inStr, int& count)
 {
     char symbol = ' ';
     CheckStatus status = EMPTY;
+    count = 0;
 
     if(inStr != nullptr) {
-        while(symbol != '\0') {
-
-            symbol = *(inStr++);
+        while((symbol = *inStr++) != '\0') {
+            count++;
 
             CheckError error = SignShowFullError(status, symbol);
             if(error != SUCCESS)
@@ -66,7 +66,7 @@ CheckError SignFullError(const char* inStr)
 
             if(symbol > 0x29 && symbol < 0x30) {
                 if(symbol == '.' || symbol == ',')
-                    status = POINT;
+                    status = D_POINT;
                 else
                     status = SIGN;
             } else {
@@ -78,25 +78,28 @@ CheckError SignFullError(const char* inStr)
         }
     }
 
-    return SUCCESS;
+    if(status == SYMBOL)
+        return SUCCESS;
+    else
+        return SIGN_END;
 }
 
 // --------------------------------------------------
 
-CheckError SignCompactError(const char* inStr)
+CheckError SignCompactError(const char* inStr, int& count)
 {
-    char symbol = ' ';
+    char symbol = 0;
     CheckStatus status = EMPTY;
+    count = 0;
 
     if(inStr != nullptr) {
-        while(symbol != '\0') {
-
-            symbol = *(inStr++);
+        while((symbol = *inStr++) != '\0') {
+            count++;
 
             if(status == SIGN)
                 if((symbol > 0x28 && symbol < 0x30) || symbol == '\0')
                     return ERRORS;
-            if(status == POINT)
+            if(status == D_POINT)
                 if((symbol > 0x27 && symbol < 0x30) || symbol == '\0')
                     return ERRORS;
             if(status == BRACKET_OPEN || status == EMPTY)
@@ -105,7 +108,7 @@ CheckError SignCompactError(const char* inStr)
 
             if(symbol > 0x29 && symbol < 0x30) {
                 if(symbol == '.' || symbol == ',')
-                    status = POINT;
+                    status = D_POINT;
                 else
                     status = SIGN;
             } else {
@@ -117,7 +120,10 @@ CheckError SignCompactError(const char* inStr)
         }
     }
 
-    return SUCCESS;
+    if(status == SYMBOL)
+        return SUCCESS;
+    else
+        return ERRORS;
 }
 
 // --------------------------------------------------

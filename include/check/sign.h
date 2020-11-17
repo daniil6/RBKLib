@@ -16,7 +16,7 @@ enum CheckError : uint8_t {
     POINT_SIGN           /*!< После точки идет знак*/
 };
 
-enum CheckStatus : uint8_t { EMPTY = 0, SIGN, SYMBOL, BRACKET_OPEN, POINT };
+enum CheckStatus : uint8_t { EMPTY = 0, SIGN, SYMBOL, BRACKET_OPEN, D_POINT };
 
-CheckError SignFullError(const char* inStr);
-CheckError SignCompactError(const char* inStr);
+CheckError SignFullError(const char* inStr, int& count);
+CheckError SignCompactError(const char* inStr, int& count);
