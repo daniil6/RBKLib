@@ -1,11 +1,28 @@
-#include "include/check/validator.h"
+#include "check/validator.h"
+
+bool ValidatorBool(const char* in, char* out, int& count)
+{
+    char ch;
+    count = 0;
+
+    if(out != nullptr && in != nullptr) {
+        while((ch = *in++)) {
+            count++;
+            if(ch > 0x27 && ch < 0x3A)
+                *out++ = ch;
+            else
+                return false;
+        }
+    }
+    return true;
+}
 
 void ValidatorArray(char in[], char out[])
 {
     if(out != nullptr && in != nullptr) {
         char ch;
         for(uint8_t i = 0, j = 0; (ch = in[i]); i++)
-            if(ch > 0x26 && ch < 0x3A)
+            if(ch > 0x27 && ch < 0x3A)
                 out[j++] = ch;
     }
 }
@@ -15,14 +32,14 @@ void ValidatorPoint(const char* in, char* out)
     char ch;
     if(out != nullptr && in != nullptr)
         while((ch = *in++))
-            if(ch > 0x26 && ch < 0x3A)
+            if(ch > 0x27 && ch < 0x3A)
                 *out++ = ch;
 }
 
 void ValidatorString(const std::string& in, std::string& out)
 {
     for(auto& p : in)
-        if(p > 0x26 && p < 0x3A)
+        if(p > 0x27 && p < 0x3A)
             out.push_back(p);
 }
 
@@ -35,7 +52,7 @@ char* ValidatorNewArray(const char* inStr)
     if(inStr != nullptr) {
         do {
             char symbol = *inStr++;
-            if(symbol > 0x26 && symbol < 0x3A) {
+            if(symbol > 0x27 && symbol < 0x3A) {
 
                 outStr = new char[outSize++]{ 0 };
                 int t_int = 0;

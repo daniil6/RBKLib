@@ -1,5 +1,7 @@
 #include <string>
 
+bool ValidatorBool(const char* in, char* out, int& count);
+
 void ValidatorArray(char in[], char out[]);
 
 void ValidatorPoint(const char* in, char* out);
