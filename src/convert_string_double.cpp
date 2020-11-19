@@ -1,14 +1,15 @@
-#include "include/convert_string_double.h"
+#include "convert_string_double.h"
 
 bool parse(char* ch, double& out, float& count, bool& divider, const char& delimiter)
 {
     if(*ch != '\0') {
 
-        if(*ch < '0' || *ch > '9')
+        if(*ch < '0' || *ch > '9') {
             if(*ch != delimiter)
                 return false;
             else if(divider == false)
                 return false;
+        }
 
         uint16_t tmp = *ch - '0';
         if(divider == false) {

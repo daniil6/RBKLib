@@ -1,4 +1,4 @@
-#include <include/wtime.h>
+#include <wtime.h>
 
 #include <vector>
 
@@ -177,5 +177,5 @@ tDateTime convertSecToDateTime(long sec)
 
 long convertDateTimeToSec(tDateTime dataTime)
 {
-    CalculateTime(dataTime.second, dataTime.minute, dataTime.hour, dataTime.day, dataTime.month, dataTime.year);
+    return CalculateTime(dataTime.second, dataTime.minute, dataTime.hour, dataTime.day, dataTime.month, dataTime.year);
 }

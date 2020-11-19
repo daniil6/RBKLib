@@ -1,4 +1,4 @@
-#include "include/compare_symbol.h"
+#include "compare_symbol.h"
 
 bool CompareSymbol(const char a[], const char b[])
 {
