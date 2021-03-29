@@ -49,3 +49,7 @@ char* ReadFileZ(std::string line, int& size)
 
     return result;
 }
+
+void ReadFileA()
+{
+}

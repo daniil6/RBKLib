@@ -1,5 +1,5 @@
-#include "convert_string_double.h"
 #include "parse/parsestring.h"
+#include "convert_string_double.h"
 
 CParseString::CParseString()
 {

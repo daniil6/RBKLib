@@ -1,7 +1,6 @@
 #ifndef CNODE_H
 #define CNODE_H
 
-
 template <class T> class CNode
 {
 public:
