@@ -9,6 +9,9 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="win">
+      <VirtualDirectory Name="socket">
+        <File Name="src/win/socket/tcpclient.cpp"/>
+      </VirtualDirectory>
       <File Name="src/win/file.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="parse">
@@ -31,7 +34,13 @@
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <VirtualDirectory Name="win">
-      <VirtualDirectory Name="socket"/>
+      <VirtualDirectory Name="socket">
+        <File Name="include/win/socket/tcpbase.cpp"/>
+        <File Name="include/win/socket/tcpbase.h"/>
+        <File Name="include/win/socket/tcpserver.cpp"/>
+        <File Name="include/win/socket/tcpserver.h"/>
+        <File Name="include/win/socket/tcpclient.h"/>
+      </VirtualDirectory>
       <File Name="include/win/file.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="parse">
@@ -56,14 +65,12 @@
     <File Name="include/convert_string_double.h"/>
     <File Name="include/convert_register_string.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
   <Settings Type="Static Library">
     <GlobalSettings>
-      <Compiler Options="" C_Options="" Assembler="">
+      <Compiler Options="-m32" C_Options="-m32" Assembler="">
         <IncludePath Value="./include"/>
       </Compiler>
-      <Linker Options="">
+      <Linker Options="-m32">
         <LibraryPath Value="."/>
       </Linker>
       <ResourceCompiler Options=""/>
@@ -145,4 +152,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

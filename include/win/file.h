@@ -54,9 +54,9 @@ public:
 
     // --------------------------------------------------------------------
 
-    int CreateWriteFile(const char* nameFile, const char* data, const int& size);
+    static int CreateWriteFile(const char* nameFile, const char* data, const int& size);
 
-    int OpenReadFile(const char* nameFile, char* data, int& size);
+    static int OpenReadFile(const char* nameFile, char* data, int& size);
 };
 
 #endif // CFILE_H
