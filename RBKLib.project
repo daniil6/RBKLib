@@ -8,6 +8,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/ringbuffer.cpp"/>
     <VirtualDirectory Name="win">
       <VirtualDirectory Name="socket">
         <File Name="src/win/socket/tcpserver.cpp"/>
@@ -35,6 +36,7 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/ringbuffer.h"/>
     <VirtualDirectory Name="win">
       <VirtualDirectory Name="socket">
         <File Name="include/win/socket/tcpbase.h"/>
