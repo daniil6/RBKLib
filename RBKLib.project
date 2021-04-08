@@ -10,6 +10,8 @@
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="win">
       <VirtualDirectory Name="socket">
+        <File Name="src/win/socket/tcpserver.cpp"/>
+        <File Name="src/win/socket/tcpbase.cpp"/>
         <File Name="src/win/socket/tcpclient.cpp"/>
       </VirtualDirectory>
       <File Name="src/win/file.cpp"/>
@@ -35,9 +37,7 @@
   <VirtualDirectory Name="include">
     <VirtualDirectory Name="win">
       <VirtualDirectory Name="socket">
-        <File Name="include/win/socket/tcpbase.cpp"/>
         <File Name="include/win/socket/tcpbase.h"/>
-        <File Name="include/win/socket/tcpserver.cpp"/>
         <File Name="include/win/socket/tcpserver.h"/>
         <File Name="include/win/socket/tcpclient.h"/>
       </VirtualDirectory>

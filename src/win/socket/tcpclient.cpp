@@ -22,7 +22,7 @@ int CTCPClient::Connect(const char* address, int port)
     printf("WSAStartup...");
     result = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if(result != NO_ERROR) {
-        printf("\terror: code %d: wsa %d: result %d\n", GetLastError(), WSAGetLastError(), result);
+        printf("\terror: code %d: wsa %d: result %d\n", (int)GetLastError(), WSAGetLastError(), result);
         WSACleanup();
         return 1;
     } else
@@ -31,7 +31,7 @@ int CTCPClient::Connect(const char* address, int port)
     printf("socket...");
     m_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(m_socket == INVALID_SOCKET) {
-        printf("\terror: code %d: wsa %d\n", GetLastError(), WSAGetLastError());
+        printf("\terror: code %d: wsa %d\n", (int)GetLastError(), WSAGetLastError());
         WSACleanup();
         return 1;
     } else
@@ -40,7 +40,7 @@ int CTCPClient::Connect(const char* address, int port)
     printf("socket %d: connect...", m_socket);
     result = connect(m_socket, (SOCKADDR*)&clientAddr, sizeof(clientAddr));
     if(result == SOCKET_ERROR) {
-        printf("\terror: code %d: wsa %d: result %d: ", GetLastError(), WSAGetLastError(), result);
+        printf("\terror: code %d: wsa %d: result %d: ", (int)GetLastError(), WSAGetLastError(), result);
         Disconnect(m_socket);
         WSACleanup();
         return 1;

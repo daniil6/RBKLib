@@ -1,4 +1,4 @@
-#include "tcpserver.h"
+#include "win/socket/tcpserver.h"
 
 CTCPServer::CTCPServer()
 {
@@ -22,7 +22,7 @@ int CTCPServer::Connect(const char* address, int port)
     printf("WSAStartup...");
     result = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if(result != NO_ERROR) {
-        printf("\terror: code %d: wsa %d: result %d\n", GetLastError(), WSAGetLastError(), result);
+        printf("\terror: code %d: wsa %d: result %d\n", (int)GetLastError(), WSAGetLastError(), result);
         WSACleanup();
         return 1;
     } else
@@ -31,7 +31,7 @@ int CTCPServer::Connect(const char* address, int port)
     printf("socket...");
     m_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(m_socket == INVALID_SOCKET) {
-        printf("\terror: code %d: wsa %d\n", GetLastError(), WSAGetLastError());
+        printf("\terror: code %d: wsa %d\n", (int)GetLastError(), WSAGetLastError());
         WSACleanup();
         return 1;
     } else
@@ -40,17 +40,17 @@ int CTCPServer::Connect(const char* address, int port)
     printf("socket %d: bind...", m_socket);
     result = bind(m_socket, (SOCKADDR*)&serverAddr, sizeof(serverAddr));
     if(result == SOCKET_ERROR) {
-        printf("\terror: code %d: wsa %d: result %d\n", GetLastError(), WSAGetLastError(), result);
+        printf("\terror: code %d: wsa %d: result %d\n", (int)GetLastError(), WSAGetLastError(), result);
         Disconnect(m_socket);
         WSACleanup();
         return 1;
     } else
-        printf("\tsuccess: socket %d\n", m_socket);
+        printf("\tsuccess\n");
 
     printf("socket %d: listen...", m_socket);
     result = listen(m_socket, SOMAXCONN);
     if(result == SOCKET_ERROR) {
-        printf("\terror: code %d: wsa %d: result %d\n", GetLastError(), WSAGetLastError(), result);
+        printf("\terror: code %d: wsa %d: result %d\n", (int)GetLastError(), WSAGetLastError(), result);
         Disconnect(m_socket);
         WSACleanup();
         return 1;
@@ -68,7 +68,7 @@ SOCKET CTCPServer::Accept()
 
     socketClient = accept(m_socket, (SOCKADDR*)&clientAddr, &lenAddr);
     if(socketClient == INVALID_SOCKET) {
-        printf("accept...\terror: code %d: wsa %d\n", GetLastError(), WSAGetLastError());
+        printf("accept...\terror: code %d: wsa %d\n", (int)GetLastError(), WSAGetLastError());
     } else
         printf("accept...\tsuccess: id %d\n", socketClient);
 
