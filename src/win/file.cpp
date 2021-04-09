@@ -103,11 +103,12 @@ int CFile::OpenReadFile(const char* nameFile, char* data, int& size)
             throw GetLastError();
 
         result = ReadFile(handle, data, size, &bytesReader, nullptr);
-        if(result == false || size != bytesReader)
+        size = bytesReader;
+        if(result == false) // || size != bytesReader)
             throw GetLastError();
 
-    } catch(DWORD error) {
-        error = error;
+    } catch(DWORD exc) {
+        error = exc;
     }
 
     CloseHandle(handle);

@@ -8,32 +8,85 @@ CTCPBase::~CTCPBase()
 {
 }
 
-void CTCPBase::Send(const uint8_t* data, const int& size)
+void CTCPBase::Send(SOCKET sock, const uint8_t* data, const int& size)
 {
     int result = 0;
 
-    printf("socket %d: send...", m_socket);
-    result = send(m_socket, (char*)data, size, 0);
-    if(result == SOCKET_ERROR)
+#ifdef RBK_DEBUG
+    printf("socket %d: send...", sock);
+#endif // RBK_DEBUG
+
+    result = send(sock, (char*)data, size, 0);
+
+    if(result != SOCKET_ERROR) {
+
+#ifdef RBK_DEBUG
+        printf("\tsucces: size: %d\n", result);
+
+#ifdef RBK_DEBUG_DATA_ARRAY
+        printf("\n\tdata array:\n");
+
+        for(int i = 0; i < result; i++)
+            printf("0x%d ", (int)data[i]);
+
+        printf("\n");
+#endif // RBK_DEBUG_DATA_ARRAY
+
+#ifdef RBK_DEBUG_DATA_CHAR
+        printf("\n\tdata char:\n");
+
+        printf("%s", data);
+
+        printf("\n");
+#endif // RBK_DEBUG_DATA_CHAR
+
+#endif // RBK_DEBUG
+
+    } else
         printf("\terror: code %d: wsa %d: result %d: ", GetLastError(), WSAGetLastError(), result);
-    else
-        printf("\tsuccess: size %d: data: %s\n", result, data);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }
 
-void CTCPBase::Recv(std::function<void(const uint8_t*, const int&)> func)
+void CTCPBase::Recv(SOCKET sock, std::function<void(const uint8_t*, const int&)> func)
 {
     int result = 0;
     uint8_t data[SIZE_BUFFER] = { 0 };
-    const int& size = SIZE_BUFFER;
+    int size = SIZE_BUFFER;
 
     do {
 
-        printf("socket %d: recv...", m_socket);
-        result = recv(m_socket, (char*)data, size, 0);
+#ifdef RBK_DEBUG
+        printf("socket %d: recv...", sock);
+#endif // RBK_DEBUG
+
+        result = recv(sock, (char*)data, size, 0);
         if(result > 0) {
-            printf("\tsucces: size: %d: data: %s\n", result, data);
+
+#ifdef RBK_DEBUG
+            printf("\tsucces: size: %d\n", result);
+
+#ifdef RBK_DEBUG_DATA_ARRAY
+            printf("\n\tdata array:\n");
+
+            for(int i = 0; i < result; i++)
+                printf("0x%d ", (int)data[i]);
+
+            printf("\n");
+#endif // RBK_DEBUG_DATA_ARRAY
+
+#ifdef RBK_DEBUG_DATA_CHAR
+            printf("\n\tdata char:\n");
+
+            printf("%s", data);
+
+            printf("\n");
+#endif // RBK_DEBUG_DATA_CHAR
+
+#endif // RBK_DEBUG
+
             if(func != nullptr)
-                func(data, size);
+                func(data, result);
         } else if(result == 0)
             printf("\tsucces: close socket\n");
         else
@@ -50,4 +103,9 @@ void CTCPBase::Disconnect(SOCKET socket)
         printf("\terror: code: %d: wsa: %d: result: %d\n", GetLastError(), WSAGetLastError(), result);
     } else
         printf("\tsuccess\n");
+}
+
+SOCKET CTCPBase::GetSocket()
+{
+    return m_socket;
 }
