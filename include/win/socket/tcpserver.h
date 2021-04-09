@@ -9,7 +9,7 @@ public:
     CTCPServer();
     ~CTCPServer();
 
-    int Connect(const char* address, int port);
+    int Connect(const char* address, int port) override;
     SOCKET Accept();
 };
 

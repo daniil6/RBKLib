@@ -9,7 +9,7 @@ public:
     CTCPClient();
     ~CTCPClient();
 
-    int Connect(const char* address, int port);
+    int Connect(const char* address, int port) override;
 };
 
 #endif // CCLIENT_H

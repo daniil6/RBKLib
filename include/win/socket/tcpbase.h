@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <thread>
 
-#define SIZE_BUFFER 1100
+#define SIZE_BUFFER 50000 // 1100
 
 class CTCPBase
 {
@@ -19,11 +19,13 @@ protected:
 
 public:
     CTCPBase();
-    ~CTCPBase();
+    virtual ~CTCPBase();
 
     void Send(SOCKET sock, const uint8_t* data, const int& size);
     void Recv(SOCKET sock, std::function<void(const uint8_t*, const int&)> func);
+
     void Disconnect(SOCKET socket);
+    virtual int Connect(const char* address, int port) = 0;
 
     SOCKET GetSocket();
 };
