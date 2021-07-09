@@ -1,9 +1,9 @@
-#ifndef CPARSESTRING_H
-#define CPARSESTRING_H
+#ifndef CPARSESTRINGV2_H
+#define CPARSESTRINGV2_H
 
 #include <string>
 
-#include "operations.h"
+#include "parse_string_v3/operations.h"
 #include "sign.h"
 #include "type.h"
 
@@ -13,7 +13,7 @@ struct TParseResult {
     double value = 0;
 };
 
-class CParseString
+class CParseStringV2
 {
 private:
     int m_numberentries;
@@ -33,12 +33,12 @@ private:
     void ConvertAndLink(StringTree* in_node, NumeralTree*& out_node);
 
 public:
-    CParseString();
-    ~CParseString();
+    CParseStringV2();
+    ~CParseStringV2();
 
     void Make(std::string formula, TParseResult& result);
     void DeleteParseResult(TParseResult& result);
     int GetNumberEntries();
 };
 
-#endif // CPARSESTRING_H
+#endif // CPARSESTRINGV2_H
