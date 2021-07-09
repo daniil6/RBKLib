@@ -1,8 +1,8 @@
 #ifndef CPARSESTRINGV3_H
 #define CPARSESTRINGV3_H
 
-#include "parse_string_v3/node.h"
 #include "parse_string_v2/sign.h"
+#include "parse_string_v3/node.h"
 
 class CParseStringV3
 {
