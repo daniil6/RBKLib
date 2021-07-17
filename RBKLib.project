@@ -8,15 +8,6 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="src/ringbuffer.cpp"/>
-    <VirtualDirectory Name="win">
-      <VirtualDirectory Name="socket">
-        <File Name="src/win/socket/tcpserver.cpp"/>
-        <File Name="src/win/socket/tcpbase.cpp"/>
-        <File Name="src/win/socket/tcpclient.cpp"/>
-      </VirtualDirectory>
-      <File Name="src/win/file.cpp"/>
-    </VirtualDirectory>
     <VirtualDirectory Name="parse">
       <File Name="src/parse/parsestring.cpp"/>
       <File Name="src/parse/operations.cpp"/>
@@ -36,16 +27,6 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
-    <VirtualDirectory Name="unix"/>
-    <File Name="include/ringbuffer.h"/>
-    <VirtualDirectory Name="win">
-      <VirtualDirectory Name="socket">
-        <File Name="include/win/socket/tcpbase.h"/>
-        <File Name="include/win/socket/tcpserver.h"/>
-        <File Name="include/win/socket/tcpclient.h"/>
-      </VirtualDirectory>
-      <File Name="include/win/file.h"/>
-    </VirtualDirectory>
     <VirtualDirectory Name="parse">
       <File Name="include/parse/type.h"/>
       <File Name="include/parse/sign.h"/>
