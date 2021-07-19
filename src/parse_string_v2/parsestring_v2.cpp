@@ -3,7 +3,6 @@
 
 CParseStringV2::CParseStringV2()
 {
-    m_sign = nullptr;
     m_pdata = &m_data;
 }
 
@@ -11,7 +10,7 @@ CParseStringV2::~CParseStringV2()
 {
 }
 
-void CParseStringV2::Process(StringTree*& node)
+void CParseStringV2::Process(StringTree*& node, CSign* sign)
 {
     m_numberentries++;
 
@@ -28,7 +27,7 @@ void CParseStringV2::Process(StringTree*& node)
 
     while(1) {
         ch = *in++;
-        if(ch == m_sign->first() || ch == m_sign->second() || ch == '\0') {
+        if(ch == sign->first() || ch == sign->second() || ch == '\0') {
 
             if(point->m_data == m_previois) {
                 // m_numberentries--;
@@ -43,9 +42,7 @@ void CParseStringV2::Process(StringTree*& node)
             m_previois = point->m_data;
             node->m_data = ch;
 
-            m_sign == & m_plusminus ? m_sign = &m_timedivid : m_sign = &m_plusminus;
-            Process(point);
-            m_sign == & m_plusminus ? m_sign = &m_timedivid : m_sign = &m_plusminus;
+            Process(point, (sign == &m_plusminus) ? (CSign*)&m_timedivid : (CSign*)&m_plusminus);
 
             if(signup == false) {
                 signup = true;
@@ -77,7 +74,7 @@ void CParseStringV2::Process(StringTree*& node)
         } else {
             if(ch == '(') {
                 counter++;
-                if(m_sign == &m_plusminus)
+                if(sign == &m_plusminus)
                     point->m_data.push_back(ch);
                 while(counter != 0) {
                     ch = *in++;
@@ -87,7 +84,7 @@ void CParseStringV2::Process(StringTree*& node)
                     if(ch == '(')
                         counter++;
                 }
-                if(m_sign == &m_timedivid)
+                if(sign == &m_timedivid)
                     point->m_data.pop_back();
             } else
                 point->m_data.push_back(ch);
@@ -164,11 +161,10 @@ void CParseStringV2::Make(std::string formula, TParseResult& result)
     StringTree* stringTree = new StringTree(formula);
     NumeralTree* numeralTree = nullptr;
 
-    m_sign = &m_plusminus;
     m_numberentries = 0;
     m_previois = "_";
 
-    Process(stringTree);
+    Process(stringTree, &m_plusminus);
 
     StringTree* point = nullptr;
     point = stringTree;
