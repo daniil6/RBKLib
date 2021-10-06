@@ -170,7 +170,7 @@ tDateTime convertSecToDateTime(long sec)
         min++;
     }
 
-    tDateTime dataTime{ (uint8_t)sec, min, (uint8_t)(hour + 3), (uint8_t)(day + 1), (uint8_t)(month + 1),
+    tDateTime dataTime { (uint8_t)sec, min, (uint8_t)(hour + 3), (uint8_t)(day + 1), (uint8_t)(month + 1),
         (uint16_t)(year + 1970) };
     return dataTime;
 }

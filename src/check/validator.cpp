@@ -54,7 +54,7 @@ char* ValidatorNewArray(const char* inStr)
             char symbol = *inStr++;
             if(symbol > 0x27 && symbol < 0x3A) {
 
-                outStr = new char[outSize++]{ 0 };
+                outStr = new char[outSize++] { 0 };
                 int t_int = 0;
                 while(t_outStr != nullptr && *t_outStr != '\0') {
                     *outStr++ = *t_outStr++;

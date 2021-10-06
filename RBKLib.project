@@ -8,6 +8,10 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <VirtualDirectory Name="queue">
+      <File Name="src/queue/queue.cpp"/>
+      <File Name="src/queue/itemqueue.cpp"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="parse_string_v3">
       <File Name="src/parse_string_v3/parsestring_v3.cpp"/>
       <File Name="src/parse_string_v3/operations.cpp"/>
@@ -43,6 +47,10 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <VirtualDirectory Name="queue">
+      <File Name="include/queue/queue.h"/>
+      <File Name="include/queue/itemqueue.h"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="parse_string_v3">
       <File Name="include/parse_string_v3/parsestring_v3.h"/>
       <File Name="include/parse_string_v3/operations.h"/>
@@ -82,6 +90,8 @@
     <File Name="include/convert_string_double.h"/>
     <File Name="include/convert_register_string.h"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
   <Settings Type="Static Library">
     <GlobalSettings>
       <Compiler Options="-m32" C_Options="-m32" Assembler="">
@@ -169,6 +179,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

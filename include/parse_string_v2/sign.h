@@ -14,7 +14,7 @@ public:
     {
         m_sign = std::make_pair(first, second);
     }
-    virtual ~CSign(){};
+    virtual ~CSign() {};
 
     char first()
     {
@@ -31,16 +31,16 @@ class CPlusMinus : public CSign
 {
 public:
     CPlusMinus()
-        : CSign('+', '-'){};
-    ~CPlusMinus(){};
+        : CSign('+', '-') {};
+    ~CPlusMinus() {};
 };
 
 class CTimeDivid : public CSign
 {
 public:
     CTimeDivid()
-        : CSign('*', '/'){};
-    ~CTimeDivid(){};
+        : CSign('*', '/') {};
+    ~CTimeDivid() {};
 };
 
 #endif // CSIGN_H

@@ -4,7 +4,7 @@ CRingBuffer::CRingBuffer()
     : m_mask(SIZE_RING_BUFFER - 1)
     , m_read(0)
     , m_write(0)
-    , m_array{ 0 }
+    , m_array { 0 }
 {
 }
 
