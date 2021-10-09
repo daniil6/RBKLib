@@ -1,3 +1,8 @@
+#ifndef CSIGN_H
+#define CSIGN_H
+
+#include <utility>
+
 class CSign
 {
 private:
@@ -37,3 +42,5 @@ public:
         : CSign('*', '/'){};
     ~CTimeDivid(){};
 };
+
+#endif // CSIGN_H

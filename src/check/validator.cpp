@@ -43,8 +43,9 @@ void ValidatorString(const std::string& in, std::string& out)
             out.push_back(p);
 }
 
-char* ValidatorNewArray(const char* inStr)
+char* ValidatorNewArray(const char* inStr) // ???
 {
+    /*
     char* outStr = nullptr;
     char* t_outStr = nullptr;
     int outSize = 1;
@@ -74,4 +75,7 @@ char* ValidatorNewArray(const char* inStr)
             return nullptr;
     } else
         return nullptr;
+    */
+
+    return nullptr;
 }

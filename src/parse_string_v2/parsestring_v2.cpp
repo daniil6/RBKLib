@@ -1,17 +1,17 @@
-#include "parse/parsestring.h"
+#include "parse_string_v2/parsestring_v2.h"
 #include "convert_string_double.h"
 
-CParseString::CParseString()
+CParseStringV2::CParseStringV2()
 {
     m_sign = nullptr;
     m_pdata = &m_data;
 }
 
-CParseString::~CParseString()
+CParseStringV2::~CParseStringV2()
 {
 }
 
-void CParseString::Process(StringTree*& node)
+void CParseStringV2::Process(StringTree*& node)
 {
     m_numberentries++;
 
@@ -95,7 +95,7 @@ void CParseString::Process(StringTree*& node)
     }
 }
 
-void CParseString::ConvertAndLink(StringTree* in_node, NumeralTree*& out_node)
+void CParseStringV2::ConvertAndLink(StringTree* in_node, NumeralTree*& out_node)
 {
     if(in_node != nullptr) {
 
@@ -126,7 +126,7 @@ void CParseString::ConvertAndLink(StringTree* in_node, NumeralTree*& out_node)
     }
 }
 
-void CParseString::Calculate(NumeralTree* node)
+void CParseStringV2::Calculate(NumeralTree* node)
 {
     double a = 0;
     double b = 0;
@@ -145,7 +145,7 @@ void CParseString::Calculate(NumeralTree* node)
     }
 }
 
-void CParseString::DeleteTree(StringTree* stringTree, NumeralTree* numeralTree)
+void CParseStringV2::DeleteTree(StringTree* stringTree, NumeralTree* numeralTree)
 {
     if(stringTree != nullptr && numeralTree != nullptr) {
         DeleteTree(stringTree->GetLeft(), numeralTree->GetLeft());
@@ -159,7 +159,7 @@ void CParseString::DeleteTree(StringTree* stringTree, NumeralTree* numeralTree)
     }
 }
 
-void CParseString::Make(std::string formula, TParseResult& result)
+void CParseStringV2::Make(std::string formula, TParseResult& result)
 {
     StringTree* stringTree = new StringTree(formula);
     NumeralTree* numeralTree = nullptr;
@@ -184,13 +184,13 @@ void CParseString::Make(std::string formula, TParseResult& result)
     result.value = *numeralTree->GetData().pvalue;
 }
 
-void CParseString::DeleteParseResult(TParseResult& result)
+void CParseStringV2::DeleteParseResult(TParseResult& result)
 {
     DeleteTree(result.stringTree, result.numeralTree);
     result.value = 0;
 }
 
-int CParseString::GetNumberEntries()
+int CParseStringV2::GetNumberEntries()
 {
     return m_numberentries;
 }

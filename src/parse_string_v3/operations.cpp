@@ -1,13 +1,11 @@
-#include "parse/operations.h"
+#include "parse_string_v3/operations.h"
 
 COperations::COperations()
 {
-    m_operations.insert(std::make_pair<char, iFunc>('+', this->Addition));
-    m_operations.insert(std::make_pair<char, iFunc>('-', this->Subtraction));
-    m_operations.insert(std::make_pair<char, iFunc>('*', this->Multiplication));
-    m_operations.insert(std::make_pair<char, iFunc>('/', this->Division));
-    m_operations.insert(std::make_pair<char, iFunc>('>', this->Max));
-    m_operations.insert(std::make_pair<char, iFunc>('<', this->Min));
+    m_operations.push_back({ '+', this->Addition });
+    m_operations.push_back({ '-', this->Subtraction });
+    m_operations.push_back({ '*', this->Multiplication });
+    m_operations.push_back({ '/', this->Division });
 }
 
 COperations::~COperations()
@@ -51,6 +49,16 @@ double COperations::Min(const double& a, const double& b)
         return a;
     else
         return b;
+}
+
+uint64_t COperations::GCD(uint64_t a, uint64_t b)
+{
+    while(b != 0) {
+        uint64_t remainder = a % b;
+        a = b;
+        b = remainder;
+    }
+    return a;
 }
 
 double COperations::Calculate(const double& a, const double& b, const char* sign)
