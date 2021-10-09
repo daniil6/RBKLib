@@ -102,7 +102,7 @@ void CParseStringV3::ConvertAndLink(CStringTree* node)
             m_confines.max = COperations::Min(m_confines.max, m_max);
             m_confines.step = COperations::GCD(m_confines.step, m_confines.max - m_confines.min);
 
-            node->SetMap(new std::map<double, double>{ { m_confines.min, val }, { m_confines.max, val } });
+            node->SetMap(new std::map<double, double> { { m_confines.min, val }, { m_confines.max, val } });
             return;
         } catch(const std::invalid_argument& ia) {
             val = 0;
@@ -135,9 +135,9 @@ void CParseStringV3::Calculate(CStringTree* node, const double& step)
         double y = right->GetValue(step);
 
         x = m_operations.Calculate(x, y, &node->m_data[0]);
-        node->SetMap(new std::map<double, double>{ { step, x } });
+        node->SetMap(new std::map<double, double> { { step, x } });
     } else if(node->GetType() == NodeType::Value)
-        node->SetMap(new std::map<double, double>{ { step, node->GetSecond() } });
+        node->SetMap(new std::map<double, double> { { step, node->GetSecond() } });
 }
 
 void CParseStringV3::DeleteTree(CStringTree* node)

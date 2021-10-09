@@ -18,7 +18,6 @@ class CParseStringV2
 private:
     int m_numberentries;
 
-    CSign* m_sign;
     CPlusMinus m_plusminus;
     CTimeDivid m_timedivid;
     std::string m_previois;
@@ -27,7 +26,7 @@ private:
     double m_data;
     double* m_pdata;
 
-    void Process(StringTree*& node);
+    void Process(StringTree*& node, CSign* sign);
     void Calculate(NumeralTree* node);
     void DeleteTree(StringTree* stringTree, NumeralTree* numeralTree);
     void ConvertAndLink(StringTree* in_node, NumeralTree*& out_node);

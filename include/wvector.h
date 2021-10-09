@@ -21,14 +21,14 @@ public:
     void PushBack(T val)
     {
         if(m_pVector != nullptr) {
-            T* pVec = new T[m_size + 1]{ 0 };
+            T* pVec = new T[m_size + 1] { 0 };
             T* pVecEnd = pVec + m_size;
             for(T* a = pVec; a < pVecEnd; a++)
                 *a = *m_pVector++;
             *pVecEnd = val;
             m_pVector = pVec;
         } else
-            m_pVector = new T[1]{ val };
+            m_pVector = new T[1] { val };
 
         m_size++;
     }
