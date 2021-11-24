@@ -37,3 +37,24 @@ int SearchLinear(const int in[], const int size, const int target)
     // В массиве нет необходимого элемента
     return -1;
 }
+
+int searchThread(const char* dataThread, const int& sizeThread, const char* dataTarget, const int& sizeTarget)
+{
+    int offset(0), i(0), j(0);
+    int searchEnd = sizeThread - sizeTarget;
+
+    if(searchEnd < 0)
+        return -1;
+
+    while(offset <= searchEnd) {
+
+        while(dataThread[i++] == dataTarget[j++])
+            if(j == sizeTarget)
+                return i;
+
+        i = ++offset;
+        j = 0;
+    }
+
+    return -1;
+}
