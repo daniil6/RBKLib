@@ -8,6 +8,18 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/printx.cpp"/>
+    <VirtualDirectory Name="win">
+      <File Name="src/win/file.cpp"/>
+      <VirtualDirectory Name="socket">
+        <File Name="src/win/socket/basesocket.cpp"/>
+        <File Name="src/win/socket/udpserver.cpp"/>
+        <File Name="src/win/socket/udpclient.cpp"/>
+        <File Name="src/win/socket/tcpserver.cpp"/>
+        <File Name="src/win/socket/tcpclient.cpp"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <File Name="src/http.cpp"/>
     <VirtualDirectory Name="queue">
       <File Name="src/queue/queue.cpp"/>
       <File Name="src/queue/itemqueue.cpp"/>
@@ -38,6 +50,17 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/printx.h"/>
+    <VirtualDirectory Name="win">
+      <File Name="include/win/file.h"/>
+      <VirtualDirectory Name="socket">
+        <File Name="include/win/socket/udpserver.h"/>
+        <File Name="include/win/socket/udpclient.h"/>
+        <File Name="include/win/socket/tcpserver.h"/>
+        <File Name="include/win/socket/tcpclient.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <File Name="include/http.h"/>
     <VirtualDirectory Name="queue">
       <File Name="include/queue/queue.h"/>
       <File Name="include/queue/itemqueue.h"/>
@@ -76,7 +99,7 @@
   <Settings Type="Static Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
-        <IncludePath Value="./include"/>
+        <IncludePath Value="include"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
@@ -87,7 +110,7 @@
       <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0"/>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/librbkd.a" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="lib/gcc_libx64/librbkd.a" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -126,7 +149,7 @@
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/librbk.a" IntermediateDirectory="./Release" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="lib/gcc_libx64/librbk.a" IntermediateDirectory="./Release" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
