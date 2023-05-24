@@ -5,11 +5,18 @@
 class CTCPServer : public CBaseSocket
 {
 private:
-    void Listen(const SOCKET& socket_server);
+    std::function<int(const SOCKET&)> m_accept_func;
 
-    int Connect() override;
+    void Listen(const SOCKET& socket_server);
 
 public:
     CTCPServer();
     ~CTCPServer() override;
+
+    int Connect() override;
+
+    void SetAcceptFunction(std::function<int(const SOCKET&)> func)
+    {
+        m_accept_func = func;
+    }
 };

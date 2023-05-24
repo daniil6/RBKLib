@@ -3,6 +3,7 @@
 CTCPServer::CTCPServer()
     : CBaseSocket(TCP)
 {
+    m_accept_func = nullptr;
 }
 
 CTCPServer::~CTCPServer() = default;
@@ -78,6 +79,7 @@ int CTCPServer::Connect()
 
 void CTCPServer::Listen(const SOCKET& socket_server)
 {
+    int result = 0;
     int remote_port = 0;
     char* ip = nullptr;
 
@@ -99,8 +101,15 @@ void CTCPServer::Listen(const SOCKET& socket_server)
 
             printf("accept... \tsuccess id:%llu ip:%s port:%d\n", socket_client, ip, remote_port);
 
-            m_list_link.push_back({ socket_client, CLIENT, locale_addr, remote_addr,
-                new std::thread(&CTCPServer::RecvSocket, this, socket_client, remote_addr) });
+            if(m_accept_func != nullptr)
+                result = m_accept_func(socket_client);
+
+            if(result == 0) {
+
+                std::thread* thr = new std::thread(&CTCPServer::RecvSocket, this, socket_client, remote_addr);
+                m_list_link.push_back({ socket_client, CLIENT, locale_addr, remote_addr, thr });
+            }
+
         } else {
             printf("accept...\terror: code %lu: wsa %d: id %llu\n", GetLastError(), WSAGetLastError(), socket_client);
         }
