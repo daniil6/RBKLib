@@ -4,10 +4,9 @@
 
 class CUDPClient : public CBaseSocket
 {
-private:
-    int Connect() override;
-
 public:
     CUDPClient();
     ~CUDPClient();
+
+    int Connect() override;
 };

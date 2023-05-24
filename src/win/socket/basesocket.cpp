@@ -1,5 +1,7 @@
 #include "win/socket/basesocket.h"
 
+#include <printx.h>
+
 CBaseSocket::CBaseSocket(const int& type_protocol)
     : m_type_protocol(type_protocol)
 {
@@ -9,7 +11,7 @@ CBaseSocket::CBaseSocket(const int& type_protocol)
 
     m_print_hex = false;
     m_print_message = false;
-    m_print_func = nullptr;
+    m_receive_func = nullptr;
     m_close_func = nullptr;
 
     m_process_check = true;
@@ -156,8 +158,8 @@ void CBaseSocket::RecvSocket(const SOCKET& socket_client, const SOCKADDR_IN& rem
             } else
                 printf("\n");
 
-            if(m_print_func != nullptr)
-                m_print_func(socket_client, data_recv, size_answer);
+            if(m_receive_func != nullptr)
+                m_receive_func(socket_client, data_recv, size_answer);
 
         } else if(size_answer == 0) {
             printf("recv... \tsuccess\tid:%llu connection closed\n", socket_client);

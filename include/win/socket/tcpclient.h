@@ -4,10 +4,9 @@
 
 class CTCPClient : public CBaseSocket
 {
-private:
-    int Connect() override;
-
 public:
     CTCPClient();
     ~CTCPClient();
+
+    int Connect() override;
 };

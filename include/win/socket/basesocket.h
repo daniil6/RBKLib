@@ -1,31 +1,20 @@
-#ifndef CBASELINK_H
-#define CBASELINK_H
-
-#ifndef WX_SOCK
-#include <winsock2.h>
-#endif // WX_SOCK
+#pragma once
 
 #include <functional>
 #include <stdint.h>
 #include <stdio.h>
 #include <thread>
 #include <vector>
-
-#include <printx.h>
+#include <winsock2.h>
 
 #define UNUSED(identifier)
-
-#define SIZE_TRAFFIC 1100
-#define MAX_SIZE_SEND 1024 * 1024
-#define MIN_SIZE_SEND 1024
 
 #define SIZE_TCP_BUFFER 100
 
 enum : int { CLIENT, SERVER };
-enum : int { TCP, UDP, TCP_SSL };
+enum : int { TCP, UDP };
 
-struct TItemLink
-{
+struct TItemLink {
     SOCKET socket;
     int type = 0;
     SOCKADDR_IN locale_addr;
@@ -39,7 +28,7 @@ private:
     int m_type_protocol;
     bool m_print_hex;
     bool m_print_message;
-    std::function<void(const SOCKET&, const char*, const int&)> m_print_func;
+    std::function<void(const SOCKET&, const char*, const int&)> m_receive_func;
 
     // -------------------------------------------------------------------
 
@@ -49,7 +38,6 @@ private:
     void CheckThread();
 
 protected:
-
     std::function<void(const SOCKET&)> m_close_func;
 
     // -------------------------------------------------------------------
@@ -72,7 +60,7 @@ protected:
 
 public:
     CBaseSocket(const int& type_protocol);
-	virtual ~CBaseSocket();
+    virtual ~CBaseSocket();
 
     int Send(const char* data_send, const int& size_send);
 
@@ -92,9 +80,9 @@ public:
         m_print_message = enable;
     }
 
-    void SetPrintFunction(std::function<void(const SOCKET&, const char*, const int&)> func)
+    void SetReceiveFunction(std::function<void(const SOCKET&, const char*, const int&)> func)
     {
-        m_print_func = func;
+        m_receive_func = func;
     }
 
     void SetCloseFunction(std::function<void(const SOCKET&)> func)
@@ -122,5 +110,3 @@ public:
         return m_list_link;
     }
 };
-
-#endif // CBASELINK_H
