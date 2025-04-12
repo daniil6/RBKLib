@@ -54,3 +54,17 @@ double ConvertStringToDouble(std::string string, const char& delimiter)
 {
     return ConvertCharToDouble(&string.front(), delimiter);
 }
+
+void dtos(const double& in, char out[], const int& size)
+{
+    for(int i = 0; i < size; i++) {
+    }
+
+    /*unsigned long long int m = 1;
+    double ret = 0;
+    for(int i = stop; i >= start; i--) {
+        ret += (s[i] - '0') * m;
+        m *= 10;
+    }
+    return ret;*/
+}
