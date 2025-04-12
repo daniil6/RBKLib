@@ -1,4 +1,5 @@
 #include "parse_string_v3/parsestring_v3.h"
+#include <stdexcept>
 
 CParseStringV3::CParseStringV3(ListNameAndPointGraph* listGraph, const double& min, const double& max)
     : m_listGraph(listGraph)

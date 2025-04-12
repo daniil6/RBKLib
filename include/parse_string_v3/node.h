@@ -3,6 +3,7 @@
 
 #include <float.h>
 #include <map>
+#include <string>
 #include <vector>
 
 #include "parse_string_v3/operations.h"
