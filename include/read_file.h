@@ -25,3 +25,5 @@ char* ReadFileZ(std::string line, int& size);
  * @brief
  */
 void ReadFileA();
+
+void read_file();

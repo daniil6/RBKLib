@@ -1,4 +1,5 @@
 #include <fstream>
+#include <sstream>
 #include <vector>
 
 std::string ReadFileS(std::string line)
@@ -52,4 +53,28 @@ char* ReadFileZ(std::string line, int& size)
 
 void ReadFileA()
 {
+}
+
+void read_file()
+{
+    {
+        std::string myLine;
+        std::ifstream myFile("in.txt");
+
+        if(myFile.is_open()) {
+            while(myFile.eof() == false) {
+                std::getline(myFile, myLine);
+                // std::cout << myLine << ": " << myFile.tellg() << '\n';
+            }
+            myFile.close();
+        }
+    }
+
+    {
+        std::stringstream ss;
+        std::ifstream myFile("in.txt");
+
+        ss << myFile.rdbuf();
+        myFile.close();
+    }
 }
