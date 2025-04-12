@@ -1,5 +1,10 @@
 #include "check/sign.h"
 
+int sign(const int& value)
+{
+    return value > 0 ? 1 : value < 0 ? -1 : 0;
+}
+
 CheckError SignShowFullError(const CheckStatus& status, const char& symbol)
 {
     if(status == SIGN) {
