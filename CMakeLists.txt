@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
+
+file(STRINGS "version" VERSION)
+
 project(rbk VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
+
+#set(TEST test)
 
 if(CMAKE_BUILD_TYPE MATCHES "Release")
     add_compile_options(-O2)
@@ -22,8 +27,6 @@ endif()
 
 #add_link_options(-fPIC)
 add_link_options(-static)
-
-link_directories($ENV{RSLibOut})
 
 if (CMAKE_BUILD_TYPE MATCHES "Debug")
     set(POSTFIX d)
@@ -51,6 +54,7 @@ add_library(${PROJECT_NAME} SHARED
         #src/ringbuffer.cpp
         src/sorting.cpp
         src/wtime.cpp
+        src/parse_stream.cpp
 )
 
 set_target_properties(${PROJECT_NAME}
@@ -58,3 +62,24 @@ set_target_properties(${PROJECT_NAME}
         PREFIX ""
         OUTPUT_NAME ${PROJECT_NAME}${POSTFIX}
 )
+
+### Test ###
+
+if(${TEST} MATCHES test)
+
+    add_executable(${TEST})
+
+    set_target_properties(${TEST}
+            PROPERTIES OUTPUT_NAME ${PROJECT_NAME}-${TEST}-${CMAKE_PROJECT_VERSION}
+    )
+
+    target_include_directories(${TEST} PRIVATE $ENV{GOOGLETEST}/googletest/include)
+
+    target_link_directories(${TEST} PRIVATE $ENV{GOOGLETEST}/lib/gcc_libx64)
+
+    target_link_libraries(${TEST} PRIVATE gtest)
+    target_link_libraries(${TEST} PRIVATE gtest_main)
+    #target_link_libraries(${TEST} PRIVATE Ws2_32)
+
+    target_sources(${TEST} PRIVATE test/test.cpp)
+endif()

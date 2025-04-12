@@ -8,8 +8,12 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/redefine.cpp"/>
+    <File Name="src/parse_stream.cpp"/>
+    <File Name="src/args.cpp"/>
     <File Name="src/printx.cpp"/>
     <VirtualDirectory Name="win">
+      <File Name="src/win/tools.cpp"/>
       <File Name="src/win/file.cpp"/>
       <VirtualDirectory Name="socket">
         <File Name="src/win/socket/basesocket.cpp"/>
@@ -50,8 +54,12 @@
     <File Name="src/convert_register_string.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
+    <File Name="include/redefine.h"/>
+    <File Name="include/parse_stream.h"/>
+    <File Name="include/args.h"/>
     <File Name="include/printx.h"/>
     <VirtualDirectory Name="win">
+      <File Name="include/win/tools.h"/>
       <File Name="include/win/file.h"/>
       <VirtualDirectory Name="socket">
         <File Name="include/win/socket/basesocket.h"/>
