@@ -5,14 +5,21 @@ const char* gStatusCode[] = {
     nullptr,
     "200 Ok",
     "404 Not Found",
+    "505 HTTP Version not Supported",
+    "401 Unauthorized",
+    "409 Conflict",
+    "500 Internal Server Error",
+    "400 Bad Request",
 };
 
 const char* gContentType[] = {
     nullptr,
     "text/html",
     "text/plain",
+    "text/css",
     "application/json",
     "application/xml",
+    "application/javascript",
     "image/jpeg",
     "image/png",
     "video/mp4",
@@ -32,14 +39,7 @@ const char* gCharset[] = {
 
 CHTTP::CHTTP()
 {
-    mBuffer = nullptr;
-    mpBuffer = nullptr;
-
-    mStatusCode = StatusCode::nullptr_status_code;
-    mContentType = ContentType::nullptr_content_type;
-    mContentTransferEncoding = ContentTransferEncoding::nullptr_content_transfer_encoding;
-    mContentLength = 0;
-    mCharset = Charset::nullptr_charset;
+    clear();
 }
 
 CHTTP::~CHTTP() = default;
@@ -56,9 +56,9 @@ void CHTTP::set(const unsigned long& value)
     mpBuffer += sprintf(mpBuffer, "%lu", value);
 }
 
-void CHTTP::setStatusCode(const StatusCode& id)
+void CHTTP::setStatusCode(const ResponseCode& id)
 {
-    mStatusCode = id;
+    mResponseCode = id;
 }
 
 void CHTTP::setContentType(const ContentType& id)
@@ -81,13 +81,26 @@ void CHTTP::setCharset(const Charset& id)
     mCharset = id;
 }
 
+void CHTTP::setAccessControlAllowOrigin(const char* value)
+{
+    mAccessControlAllowOrigin = value;
+}
+
+void CHTTP::setAccessControlAllowMethods(const char* value)
+{
+    mAccessControlAllowMethods = value;
+}
+
 unsigned long CHTTP::makeHeader(char* buffer)
 {
+    if(buffer == nullptr)
+        return 0;
+
     mpBuffer = mBuffer = buffer;
 
-    if(mStatusCode != StatusCode::nullptr_status_code) {
+    if(mResponseCode != ResponseCode::nullptr_status_code) {
         set("HTTP/1.1 ");
-        set(gStatusCode[mStatusCode]);
+        set(gStatusCode[mResponseCode]);
         set("\r\n");
     }
 
@@ -103,15 +116,25 @@ unsigned long CHTTP::makeHeader(char* buffer)
         set("\r\n");
     }
 
-    if(mContentLength != 0) {
-        set("Content-Length: ");
-        set(mContentLength);
-        set("\r\n");
-    }
+    set("Content-Length: ");
+    set(mContentLength);
+    set("\r\n");
 
     if(mCharset != Charset::nullptr_charset) {
         set("Charset=");
         set(gCharset[mCharset]);
+        set("\r\n");
+    }
+
+    if(mAccessControlAllowOrigin != nullptr) {
+        set("Access-Control-Allow-Origin: ");
+        set(mAccessControlAllowOrigin);
+        set("\r\n");
+    }
+
+    if(mAccessControlAllowMethods != nullptr) {
+        set("Access-Control-Allow-Methods: ");
+        set(mAccessControlAllowMethods);
         set("\r\n");
     }
 
@@ -120,4 +143,18 @@ unsigned long CHTTP::makeHeader(char* buffer)
     set("\r\n");
 
     return mpBuffer - mBuffer;
+}
+
+void CHTTP::clear()
+{
+    mResponseCode = ResponseCode::nullptr_status_code;
+    mContentType = ContentType::nullptr_content_type;
+    mContentTransferEncoding = ContentTransferEncoding::nullptr_content_transfer_encoding;
+    mContentLength = 0;
+    mCharset = Charset::nullptr_charset;
+    mAccessControlAllowOrigin = nullptr;
+    mAccessControlAllowMethods = nullptr;
+
+    mBuffer = nullptr;
+    mpBuffer = nullptr;
 }
