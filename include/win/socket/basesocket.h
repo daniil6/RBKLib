@@ -9,7 +9,7 @@
 
 #define UNUSED(identifier)
 
-#define SIZE_TCP_BUFFER 100
+#define SIZE_TCP_BUFFER 1024
 
 enum : int { CLIENT, SERVER };
 enum : int { TCP, UDP };
