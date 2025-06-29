@@ -44,7 +44,8 @@ protected:
 
     int m_locale_port;
     int m_remote_port;
-    const char* m_address;
+    const char* m_locale_address;
+    const char* m_remote_address;
 
     std::vector<TItemLink> m_list_link;
 
@@ -90,19 +91,24 @@ public:
         m_close_func = func;
     }
 
+    void SetLocalPort(const int& locale_port)
+    {
+      m_locale_port = locale_port;
+    }
+
     void SetRemotePort(const int& remote_port)
     {
         m_remote_port = remote_port;
     }
 
-    void SetLocalPort(const int& locale_port)
+    void SetLocalAddress(const char* address)
     {
-        m_locale_port = locale_port;
+        m_locale_address = address;
     }
 
-    void SetAddress(const char* address)
+    void SetRemoteAddress(const char* address)
     {
-        m_address = address;
+      m_remote_address = address;
     }
 
     std::vector<TItemLink>& GetListLink()

@@ -7,7 +7,8 @@ CBaseSocket::CBaseSocket(const int& type_protocol)
 {
     m_locale_port = 0;
     m_remote_port = 0;
-    m_address = nullptr;
+    m_locale_address = nullptr;
+    m_remote_address = nullptr;
 
     m_print_hex = false;
     m_print_message = false;
@@ -43,7 +44,7 @@ void CBaseSocket::CheckThread()
         for(auto ritr = m_list_link.rbegin(); ritr != m_list_link.rend();) {
 
             result = getsockopt(ritr->socket, SOL_SOCKET, SO_ERROR, (char*)&error_code, &length_error_code);
-            if(result != 0) {
+            if(result == SOCKET_ERROR) {
 
                 if(ritr->thread != nullptr) {
 

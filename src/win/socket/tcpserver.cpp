@@ -22,7 +22,7 @@ int CTCPServer::Connect()
     ZeroMemory(&locale_addr, sizeof(SOCKADDR_IN));
     locale_addr.sin_family = AF_INET;
     locale_addr.sin_port = htons(m_locale_port);
-    locale_addr.sin_addr.S_un.S_addr = m_address == nullptr ? INADDR_ANY : inet_addr(m_address);
+    locale_addr.sin_addr.S_un.S_addr = m_locale_address == nullptr ? INADDR_ANY : inet_addr(m_locale_address);
 
     ZeroMemory(&remote_addr, sizeof(SOCKADDR_IN));
 

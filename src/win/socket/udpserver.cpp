@@ -46,7 +46,7 @@ int CUDPServer::Connect()
     ZeroMemory(&remote_addr, sizeof(SOCKADDR_IN));
     remote_addr.sin_family = AF_INET;
     remote_addr.sin_port = htons(m_remote_port);
-    remote_addr.sin_addr.S_un.S_addr = m_address == nullptr ? INADDR_ANY : inet_addr(m_address);
+    remote_addr.sin_addr.S_un.S_addr = m_remote_address == nullptr ? INADDR_ANY : inet_addr(m_remote_address);
 
     printf("socket...");
     socket_server = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
