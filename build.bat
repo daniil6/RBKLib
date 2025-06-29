@@ -1,0 +1,6 @@
+@echo CACHE: %CACHE%
+@echo LIBRARY: %LIBRARY%
+
+rd /q/s "%CACHE%\RBKLib\build"
+
+cmake -G "MinGW Makefiles" -B %CACHE%/RBKLib/build -DCMAKE_INSTALL_PREFIX=%LIBRARY%/RBKLib -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF
